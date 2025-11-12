@@ -36,7 +36,7 @@ World.create(document.getElementById('scene-container'), {
   const sphereGeometry = new SphereGeometry(0.25, 32, 32);
   const greenMaterial = new MeshStandardMaterial({ color: "red" });
   const sphere = new Mesh(sphereGeometry, greenMaterial);
-  sphere.position.set(1, 1, -2);
+  sphere.position.set(1, 1.5, -3);
   const sphereEntity = world.createTransformEntity(sphere);
 
   // create a floor
