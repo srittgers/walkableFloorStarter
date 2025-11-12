@@ -1,9 +1,10 @@
 import {
   Mesh,
   MeshStandardMaterial,
-  SphereGeometry,
+  SphereGeometry,PlaneGeometry,
   SessionMode,
   World,
+  LocomotionEnvironment,EnvironmentType
 } from '@iwsdk/core';
 
 import {
@@ -24,7 +25,7 @@ World.create(document.getElementById('scene-container'), {
     features: { }
   },
 
-  features: { },
+  features: { locomotion: true },
 
 }).then((world) => {
 
@@ -32,17 +33,22 @@ World.create(document.getElementById('scene-container'), {
 
   
   // Create a green sphere
-  const sphereGeometry = new SphereGeometry(0.5, 32, 32);
-  const greenMaterial = new MeshStandardMaterial({ color: 0x33ff33 });
+  const sphereGeometry = new SphereGeometry(0.25, 32, 32);
+  const greenMaterial = new MeshStandardMaterial({ color: "red" });
   const sphere = new Mesh(sphereGeometry, greenMaterial);
-  sphere.position.set(1, 0, -2);
+  sphere.position.set(1, 1, -2);
   const sphereEntity = world.createTransformEntity(sphere);
 
+  // create a floor
+  const floorMesh = new Mesh(new PlaneGeometry(20, 20), new MeshStandardMaterial({color:"tan"}));
+  floorMesh.rotation.x = -Math.PI / 2;
+  const floorEntity = world.createTransformEntity(floorMesh);
+  floorEntity.addComponent(LocomotionEnvironment, { type: EnvironmentType.STATIC });
 
 
 
 
-
+  
 
 
 
